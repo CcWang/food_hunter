@@ -1,0 +1,8 @@
+{
+  "name": "foodHunter",
+  "dependencies": {
+    "body-parser": "1.14.2",
+    "express": "~4.10.0",
+    "mongoose": "^4.0.1"
+  }
+}
