@@ -6,8 +6,8 @@ var userSchema = new Schema({
   name:{type:String, required:true,index:{unique:true}},
   email:{type:String, required:true, index:{ unique: true}},
   password:{type:String, required:true},
-  fav_category:{type:Array},
-  restaurant:{type:Array}
+  fav_category:{}
+  restaurant:{}
 });
 
 mongoose.model('User',userSchema);

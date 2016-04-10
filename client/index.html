@@ -11,13 +11,16 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="./static/script.js"></script>
-  </head>
+  <script type="text/javascript" src="./static/script.js"></script>
+<link rel="stylesheet" type="text/css" href="./static/style.css">
   </head>
   <body ng-controller='homeController'>
+  <video autoplay loop poster="polina.jpg" id="bgvid" muted= 'true'>
+    
+    <source src="./static/images/food.mp4" type="video/mp4">
+  </video>
     <h1>Hello</h1>
-
+    <img src="./static/images/American(New).jpg" class="img-circle" alt="American(New)" width="304" height="236">
     <button type='submit' ng-click='getYelp()'>CLick Me</button>
   </body>
 </html>
