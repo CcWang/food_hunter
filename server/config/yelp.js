@@ -9,7 +9,9 @@ module.exports={
     var url = 'http://api.yelp.com/v2/search';
     var default_parameters = {
       location:'San+Francisco',
-      sort:'2'
+      sort:'2',
+      limit:1,
+      category_filter:'chinese'
     };
     var required_parameters = {
        oauth_consumer_key : process.env.oauth_consumer_key,
