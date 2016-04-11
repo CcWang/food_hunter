@@ -1,26 +1,21 @@
 <!DOCType html>
 <html ng-app='myApp'>
   <head>
-    <title></title>
+    <title>Food Hunter</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./static/script.js"></script>
-<link rel="stylesheet" type="text/css" href="./static/style.css">
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+          
+    <script type="text/javascript" src="./static/script.js"></script>
+     <script type="text/javascript" src="./static/category_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Tillana:800' rel='stylesheet' type='text/css'>
   </head>
-  <body ng-controller='homeController'>
-  <video autoplay loop poster="polina.jpg" id="bgvid" muted= 'true'>
+  <body>
+    <div ng-view=''></div>
     
-    <source src="./static/images/food.mp4" type="video/mp4">
-  </video>
-    <h1>Hello</h1>
-    <img src="./static/images/American(New).jpg" class="img-circle" alt="American(New)" width="304" height="236">
-    <button type='submit' ng-click='getYelp()'>CLick Me</button>
   </body>
 </html>

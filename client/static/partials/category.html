@@ -1,0 +1,12 @@
+<div ng-controller = 'categoryController'>
+  <h3>Welcome, {{user.email}}</h3>
+  <div ng-repeat='(key, value) in user.fav_category | orderBy: value' class="col s12">
+    <form class="col s4" action="#">
+      <img src="./static/images/{{key}}.jpg" alt="{{key}} style food picture">
+      <p>
+      <input class="with-gap" name="group1" type="radio"/>
+      <label>{{key}}</label>
+      </p>
+    </form>
+  </div>
+</div>

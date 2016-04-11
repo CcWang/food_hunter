@@ -13,5 +13,20 @@ video#bgvid {
     transform: translateX(-50%) translateY(-50%);
     background: url(polina.jpg) no-repeat;
     background-size: center; 
+}
 
+h1{
+    font-family: 'Tillana',cursive;
+    font-size: 80px;
+    color: #e62739;
+}
+
+#header{
+    margin-top: 400px;
+    text-align: center;
+}
+
+h3 {
+    color: #173e43;
+    font-weight: bold;
 }
