@@ -1,7 +1,7 @@
 <div ng-controller = 'categoryController'>
   <h3>Welcome {{user.email}}</h3>
   <p ng-if="!user"><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
-  <div ng-repeat='(key, value) in user.fav_category | orderBy: value' class="col s12">
+<!--   <div ng-repeat='(key, value) in user.fav_category | orderBy: value' class="col s12">
     <form class="col s4" action="#">
       <img src="./static/images/{{key}}.jpg" alt="{{key}} style food picture">
       <p>
@@ -9,5 +9,5 @@
       <label>{{key}}</label>
       </p>
     </form>
-  </div>
+  </div> -->
 </div>
