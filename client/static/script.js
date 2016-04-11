@@ -43,7 +43,8 @@ myApp.factory('mainFactory',function($location,$http){
       }else{
         //create that user
         $http.post('/create',user).success(function(data){
-          console.log('new_user',data);
+          factory.user = data;
+          $location.path('/category');
         });
       }
     });

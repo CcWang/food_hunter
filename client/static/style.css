@@ -30,3 +30,9 @@ h3 {
     color: #173e43;
     font-weight: bold;
 }
+img{
+    width: 300px;
+    height: 250px;
+    border-radius: 50%;
+    display: inline-block;
+}
