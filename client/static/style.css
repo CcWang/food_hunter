@@ -1,3 +1,6 @@
+html{
+    background-color: #e8edf3;
+}
 video#bgvid { 
     position: fixed;
     top: 50%;
@@ -11,7 +14,6 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
     background-size: center; 
 }
 
@@ -27,7 +29,7 @@ h1{
 }
 
 h3 {
-    color: #173e43;
+    color: #22264b;
     font-weight: bold;
 }
 img{
@@ -36,3 +38,11 @@ img{
     border-radius: 50%;
     display: inline-block;
 }
+
+.cat_name {
+    color:#b56969;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+

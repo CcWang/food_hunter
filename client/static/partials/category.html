@@ -1,13 +1,25 @@
 <div ng-controller = 'categoryController'>
   <h3>Welcome {{user.email}}</h3>
-  <p ng-if="!user"><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
-<!--   <div ng-repeat='(key, value) in user.fav_category | orderBy: value' class="col s12">
-    <form class="col s4" action="#">
-      <img src="./static/images/{{key}}.jpg" alt="{{key}} style food picture">
-      <p>
-      <input class="with-gap" name="group1" type="radio"/>
-      <label>{{key}}</label>
-      </p>
+  <p><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
+ <!--  <ul ng-repeat = 'cat in category'>
+    <li>{{cat}}</li>
+  </ul> -->
+    <div ng-repeat= 'cat in category' id="image" style="display: inline-block; margin: 10px" class="col s4">
+      <form>
+      <div>
+        <p class="cat_name">{{cat[0]}}</p>
+        <img src="./static/images/{{cat[0]}}.jpg">
+        <input type="hidden" value="{{cat[0]}}"></input>
+        <div class="switch">
+          <label>
+            -_- NO
+            <input type="checkbox" ngChange='update(cat)'>
+            <span class="lever"></span>
+            ^_^ YES
+          </label>
+        </div>
+      </div>
     </form>
-  </div> -->
+    </div>
 </div>
+    
