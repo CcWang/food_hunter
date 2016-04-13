@@ -10,8 +10,7 @@ module.exports={
     var default_parameters = {
       location:'San+Francisco',
       sort:'2',
-      limit:1,
-      category_filter:'chinese'
+      limit:2,
     };
     var required_parameters = {
        oauth_consumer_key : process.env.oauth_consumer_key,
@@ -42,6 +41,7 @@ module.exports={
 
     /* Then we use request to send make the API Request */
     request(apiURL, function(error, response, body){
+      console.log(apiURL);
       return cb(error, response, body);
       });
     }

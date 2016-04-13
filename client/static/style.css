@@ -37,6 +37,10 @@ img{
     height: 250px;
     border-radius: 50%;
     display: inline-block;
+    margin: 0 auto;
+}
+#image{
+    margin: 0 auto;
 }
 
 .cat_name {

@@ -3,11 +3,19 @@ var yelp =  require('./../config/yelp.js');
 var request = require('querystring');
 var users = require('./../controllers/users.js')
 module.exports = function (app) {
-  app.get('/index', function (req, res) {
-    console.log('get/index');
-    yelp.request_yelp({}, function(error, response, body){
-      fs.writeFile('response.log',response);
+  app.post('/index', function (req, res) {
+   
+    var list ={
+      //using google api to get current location
+      location:'San+Francisco',
+      sort:'2',
+      limit:2,
+      category_filter:'chinese,french'
+    }
+    yelp.request_yelp(list,function(error, response, body){
       fs.writeFile('body.log',body);
+      fs.writeFile('error.log',error);
+      res.json(body);
     });
   });
   app.post('/user',function(req,res){
@@ -15,5 +23,8 @@ module.exports = function (app) {
   });
   app.post('/create',function(req,res){
     users.create(req,res);
+  });
+  app.post('/updateCategory/:id',function(req,res){
+    users.updateCategory(req,res);
   })
 }

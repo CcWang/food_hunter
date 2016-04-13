@@ -15,12 +15,12 @@ module.exports = {
         'Buffets':0,
         'Burgers':0,
         'Chicken Wings':0,
-        'Chinese':2,
+        'Chinese':0,
         'Canadian':0,
         'Caribbean':0,
         'Dumplings':0,
         'Eastern European':0,
-        'Fast Food':3,
+        'Fast Food':0,
         'Fish & Chips':0,
         'French':0,
         'Filipino':0,
@@ -49,7 +49,7 @@ module.exports = {
         'Spanish':0,
         'Steakhouses':0,
         'Sushi Bars':0,
-        'Taiwanese':1,
+        'Taiwanese':0,
         'Thai':0,
         'Turkish':0,
         'Ukrainian':0,
@@ -86,5 +86,20 @@ module.exports = {
       }
       
     })
+  },
+  updateCategory:function(req,res){
+    // console.log(req.body);
+    // console.log(req.params);
+    for (var i=0;i < req.body.length ; i++) {
+        req.body[i]
+        //mongoose way to conplie object key ==>put in query
+        var query = {}
+        query['fav_category.'+ req.body[i]]=1;
+        User.update({_id:req.params.id},{$inc:query},function(err,data){
+            console.log(data);
+        })
+    }
+
+    res.json(req.body);
   }
 }

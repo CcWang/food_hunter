@@ -32,7 +32,6 @@ myApp.config(function($routeProvider){
 // })
 myApp.factory('mainFactory',function($location,$http){
   var factory={};
-
   factory.findUser = function(user,cb){
     $http.post('/user',user).success(function(data){
       if(data == 'Email address and password do not match'){
@@ -48,6 +47,21 @@ myApp.factory('mainFactory',function($location,$http){
         });
       }
     });
+  }
+
+  factory.update_cat = function(data){
+    //get user's picked category
+    $http.post('/updateCategory/'+factory.user._id, data).success(function(data){
+      var location = {list:data};
+      factory.getYelp(location);
+    })
+  }
+
+  factory.getYelp = function (location) {
+    $http.post('/index',location).success(function (data) {
+      factory.restaurants = data;
+      $location.path('/restaurant');
+    })
   }
   return factory;
 })
