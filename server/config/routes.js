@@ -4,13 +4,15 @@ var request = require('querystring');
 var users = require('./../controllers/users.js')
 module.exports = function (app) {
   app.post('/index', function (req, res) {
-   
+    // console.log(req.body.list.unshift('Chinese'));
+    console.log(req.body.list.join(',').toLowerCase());
+    var food = req.body.list.join(',').toLowerCase();
     var list ={
       //using google api to get current location
       location:'San+Francisco',
       sort:'2',
       limit:2,
-      category_filter:'chinese,french'
+      category_filter: 'chinese,'+food
     }
     yelp.request_yelp(list,function(error, response, body){
       fs.writeFile('body.log',body);

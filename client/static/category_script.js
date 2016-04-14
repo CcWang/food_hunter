@@ -2,7 +2,7 @@
 myApp.controller('categoryController',function($scope,mainFactory ){
   $scope.category = [];
   $scope.checked_cat = [];
-  console.log('locaalStorage.email: ',localStorage.email);
+  console.log('localStorage.email: ',localStorage.email);
   var getUser = function(data){
   $scope.user = data;
   // console.log($scope.user);
