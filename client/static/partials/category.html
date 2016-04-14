@@ -4,7 +4,7 @@
       <h3 class="col s4">Welcome</h3><h3 class="col s2" ng-bind='user.email'></h3>
       <div class="col s12">
         <p class="col s6" ng-hide ='user.email'><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
-        <p class="col s6" ng-if ='user.email'><a href="#/" class="waves-effect waves-light btn">Log off</a></p>
+        <p class="col s6" ng-if ='user.email'><button class="waves-effect waves-light btn" ng-click='logoff()'>Log off</button></p>
         <p class="col s2" ng-if='user.email'><button ng-click='submit()' class="waves-effect waves-light btn">Next</button></p>
       </div>
       <div ng-repeat= 'cat in category' id="image" style="display: inline-block; margin: 10px" class="col s3"  >

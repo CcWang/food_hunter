@@ -88,7 +88,7 @@ module.exports = {
     })
   },
   updateCategory:function(req,res){
-    // console.log(req.body);
+    console.log(req.body);
     // console.log(req.params);
     for (var i=0;i < req.body.length ; i++) {
         req.body[i]
@@ -101,5 +101,14 @@ module.exports = {
     }
 
     res.json(req.body);
+  },
+  findByEmail:function(req,res){
+    User.find({'email':req.body.email},function(err,data){
+        if (err) {
+            console.log('errors',err);
+        }else{
+            res.json(data);
+        }
+    })
   }
 }

@@ -30,25 +30,41 @@ myApp.config(function($routeProvider){
 //     homeFactory.getYelp();
 //   }
 // })
-myApp.factory('mainFactory',function($location,$http){
+myApp.factory('mainFactory',function($window, $location,$http){
   var factory={};
-  factory.findUser = function(user,cb){
+  factory.user = {};
+  factory.login = function(user,cb){
     $http.post('/user',user).success(function(data){
       if(data == 'Email address and password do not match'){
         cb(data);
       }else if(data){
-        factory.user = data;
+        // factory.user = data;
+        factory.storeUser(data.email);
+        // console.log(localStorage);
         $location.path('/category');
       }else{
         //create that user
         $http.post('/create',user).success(function(data){
-          factory.user = data;
+          // factory.user = data;
+          factory.storeUser(data.email);
+          // console.log(localStorage);
           $location.path('/category');
         });
       }
     });
   }
+ factory.storeUser = function(data){
+  localStorage.email = data;
+ }
+ factory.findUser = function(data,cb){
 
+    $http.post('/findByEmail',{email:data}).success(function(user){
+      console.log(user);
+      factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id};
+      cb(factory.user);
+      console.log(factory.user);
+    })
+ }
   factory.update_cat = function(data){
     //get user's picked category
     $http.post('/updateCategory/'+factory.user._id, data).success(function(data){
@@ -63,13 +79,18 @@ myApp.factory('mainFactory',function($location,$http){
       $location.path('/restaurant');
     })
   }
+  factory.logoff = function(){
+    delete localStorage.email;
+    $location.path('/');
+    $window.location.reload();
+  }
   return factory;
 })
 
 myApp.controller('mainController',function($scope,mainFactory){
   
-  $scope.findUser = function(){
-    mainFactory.findUser($scope.user,function(data){
+  $scope.login = function(){
+    mainFactory.login($scope.user,function(data){
       $scope.error=data;
     });
   }

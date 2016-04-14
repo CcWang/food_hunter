@@ -26,5 +26,8 @@ module.exports = function (app) {
   });
   app.post('/updateCategory/:id',function(req,res){
     users.updateCategory(req,res);
+  });
+  app.post('/findByEmail',function(req,res){
+    users.findByEmail(req,res);
   })
 }
