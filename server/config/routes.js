@@ -31,5 +31,12 @@ module.exports = function (app) {
   });
   app.post('/findByEmail',function(req,res){
     users.findByEmail(req,res);
+  });
+  app.post('/getlocation',function(req,res){
+    yelp.request_current_location(function(error,response,body){
+      // console.log(response);
+      console.log(body);
+      console.log(error);
+    })
   })
 }

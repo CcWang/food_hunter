@@ -84,6 +84,12 @@ myApp.factory('mainFactory',function($window, $location,$http){
     $location.path('/');
     $window.location.reload();
   }
+  factory.getLocation = function(){
+    $http.post('/getlocation').success(function(data){
+      console.log(data);
+    })
+  }
+  factory.getLocation();
   return factory;
 })
 
