@@ -14,22 +14,6 @@ myApp.config(function($routeProvider){
       redirectTo:'/'
     })
 })
-// myApp.factory('homeFactory',function($http){
-//   var factory = {};
-//   factory.getYelp = function () {
-//     console.log('factory')
-//     $http.get('/index').success(function (data) {
-//       console.log(data)
-//     })
-//   }
-//   return factory;
-// });
-// myApp.controller('homeController', function ($scope, homeFactory) {
-//   $scope.getYelp = function (){
-//     console.log('controller answer')
-//     homeFactory.getYelp();
-//   }
-// })
 myApp.factory('mainFactory',function($window, $location,$http){
   var factory={};
   factory.user = {};
@@ -81,9 +65,21 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
   factory.logoff = function(){
     delete localStorage.email;
+    delete localStorage.lat;
+    delete localStorage.lng;
     $location.path('/');
     $window.location.reload();
   }
+  factory.getLocation = function(){
+    $http.post('/getlocation').success(function(data){
+      $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+data.key).success(function(data){
+        localStorage.lat=data.location.lat;
+        localStorage.lng =data.location.lng;
+        console.log(localStorage);
+      })
+    })
+  }
+  factory.getLocation();
   return factory;
 })
 
