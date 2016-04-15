@@ -44,11 +44,5 @@ module.exports={
       console.log(apiURL);
       return cb(error, response, body);
       });
-    },
-    request_current_location:function(cb){
-      var url = 'https://www.googleapis.com/geolocation/v1/geolocate?key='+process.env.google_key;
-      request(url,function(error,response,body){
-        return cb(error,response,body);
-      })
     }
 }

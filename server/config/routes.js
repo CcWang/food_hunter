@@ -2,6 +2,7 @@ var fs = require('fs');
 var yelp =  require('./../config/yelp.js');
 var request = require('querystring');
 var users = require('./../controllers/users.js')
+var API_KEY = process.env.google_key;
 module.exports = function (app) {
   app.post('/index', function (req, res) {
     // console.log(req.body.list.unshift('Chinese'));
@@ -33,10 +34,6 @@ module.exports = function (app) {
     users.findByEmail(req,res);
   });
   app.post('/getlocation',function(req,res){
-    yelp.request_current_location(function(error,response,body){
-      // console.log(response);
-      console.log(body);
-      console.log(error);
-    })
+    res.json({key:API_KEY});
   })
 }

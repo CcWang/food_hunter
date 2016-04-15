@@ -81,12 +81,18 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
   factory.logoff = function(){
     delete localStorage.email;
+    delete localStorage.lat;
+    delete localStorage.lng;
     $location.path('/');
     $window.location.reload();
   }
   factory.getLocation = function(){
     $http.post('/getlocation').success(function(data){
-      console.log(data);
+      $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+data.key).success(function(data){
+        localStorage.lat=data.location.lat;
+        localStorage.lng =data.location.lng;
+        console.log(localStorage);
+      })
     })
   }
   factory.getLocation();
