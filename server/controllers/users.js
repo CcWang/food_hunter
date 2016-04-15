@@ -8,7 +8,7 @@ module.exports = {
       fav_category: {
         'American(New)':0,
         'American(Tranditional)':0,
-        "Barbeque":0,
+        "BBQ":0,
         'Brazilian':0,
         'Breakfast & Brunch':0,
         'British':0,
@@ -18,7 +18,6 @@ module.exports = {
         'Chinese':0,
         'Canadian':0,
         'Caribbean':0,
-        'Dumplings':0,
         'Eastern European':0,
         'Fast Food':0,
         'Fish & Chips':0,

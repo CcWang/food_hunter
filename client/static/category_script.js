@@ -1,4 +1,13 @@
 
+myApp.controller('mainController',function($scope,mainFactory){
+  
+  $scope.login = function(){
+    mainFactory.login($scope.user,function(data){
+      $scope.error=data;
+    });
+  }
+})
+
 myApp.controller('categoryController',function($scope,mainFactory ){
   $scope.category = [];
   $scope.checked_cat = [];
@@ -30,19 +39,20 @@ myApp.controller('categoryController',function($scope,mainFactory ){
   $scope.logoff = function(){
     mainFactory.logoff();
   }
+  //to check, delete later;
+  $scope.check = function(){
+    mainFactory.check($scope.user.fav_category);
+  }
   
 })
 
 myApp.controller('resController',function($scope, mainFactory){
   var getUser = function(data){
-    $scope.user = {};
-    $scope.user.email = data.email;
-    $scope.user.fav_category = data.fav_category;
-    $scope.user._id = data._id;
+    $scope.user = data;
   }
   var getRes = function(data){
     $scope.restaurants =data;
   }
-  getUser(mainFactory.user);
+  mainFactory.findUser(localStorage.email, getUser);
   getRes(mainFactory.restaurants);
 })

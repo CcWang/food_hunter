@@ -71,7 +71,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
     $window.location.reload();
   }
   factory.getLocation = function(){
-    $http.post('/getlocation').success(function(data){
+    $http.post('/getGoogleKey').success(function(data){
       $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+data.key).success(function(data){
         localStorage.lat=data.location.lat;
         localStorage.lng =data.location.lng;
@@ -81,13 +81,4 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
   factory.getLocation();
   return factory;
-})
-
-myApp.controller('mainController',function($scope,mainFactory){
-  
-  $scope.login = function(){
-    mainFactory.login($scope.user,function(data){
-      $scope.error=data;
-    });
-  }
 })
