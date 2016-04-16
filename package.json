@@ -1,7 +1,6 @@
 {
   "name": "foodHunter",
   "description": "a website help user to quickly deside where and what to eat",
-  "version": "1.0",
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "1.14.2",

@@ -11,7 +11,6 @@ myApp.controller('mainController',function($scope,mainFactory){
 myApp.controller('categoryController',function($scope,mainFactory ){
   $scope.category = [];
   $scope.checked_cat = [];
-  console.log('localStorage.email: ',localStorage.email);
   var getUser = function(data){
   $scope.user = data;
   // console.log($scope.user);
@@ -32,16 +31,13 @@ myApp.controller('categoryController',function($scope,mainFactory ){
       }
   }
   $scope.submit = function(){
+     // localStorage.checked_cat = [];
     if ($scope.checked_cat.length > 0) {
       mainFactory.update_cat($scope.checked_cat)  
     }
   }
   $scope.logoff = function(){
     mainFactory.logoff();
-  }
-  //to check, delete later;
-  $scope.check = function(){
-    mainFactory.check($scope.user.fav_category);
   }
   
 })
@@ -52,6 +48,9 @@ myApp.controller('resController',function($scope, mainFactory){
   }
   var getRes = function(data){
     $scope.restaurants =data;
+  }
+   $scope.logoff = function(){
+    mainFactory.logoff();
   }
   mainFactory.findUser(localStorage.email, getUser);
   getRes(mainFactory.restaurants);

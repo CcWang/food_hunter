@@ -1,6 +1,31 @@
 <div ng-controller = 'resController'>
   <div class="row">
-    {{restaurants}}
-    {{user}}
+     <div class="col s12">
+      <div>
+         <h3 class="col s6">Welcome</h3><h3 class="col s4" ng-bind='user.email'></h3>
+         <h4 class="col s10">Listed is all the restaurants near you based on the category you just picked.</h4>
+      </div>
+      <div class="col s10">
+        <p class="col s6" ng-hide ='user.email'><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
+        <p class="col s6" ng-if ='user.email'><button class="waves-effect waves-light btn" ng-click='logoff()'>Log off</button></p>
+        <p class="col s4" ng-if='user.email'><button ng-click='submit()' class="waves-effect waves-light btn">Next</button></p>
+      </div>
+     </div>
+     <div class="col s12">
+       <div ng-repeat = '(key,value) in restaurants.businesses' style="display: inline-block;">
+            <div>
+              <p>{{value.name}}</p>
+              <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
+              <img src="{{value.image_url}}"><br>
+              <p>{{value.location.display_address[0]}}</p>
+              <p>{{value.phone}}</p>
+              <a href="{{value.url}}" target="_blank">more detail</a>
+            </div>
+            
+        </div>
+       
+     </div>
+     <hr>
+     {{restaurants.businesses.length}}
   </div>
 </div>

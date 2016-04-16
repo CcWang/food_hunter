@@ -43,21 +43,24 @@ myApp.factory('mainFactory',function($window, $location,$http){
  factory.findUser = function(data,cb){
 
     $http.post('/findByEmail',{email:data}).success(function(user){
-      console.log(user);
+      // console.log(user);
       factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id};
       cb(factory.user);
-      console.log(factory.user);
+      // console.log(factory.user);
     })
  }
   factory.update_cat = function(data){
     //get user's picked category
     $http.post('/updateCategory/'+factory.user._id, data).success(function(data){
-      var location = {list:data};
+      var location = {list:data,location:[localStorage.lat,localStorage.lng]};
       factory.getYelp(location);
     })
   }
 
   factory.getYelp = function (location) {
+    // console.log('getYelp location',location);
+    // $rootScope.getYelp = location;
+    // console.log('rootScope',$rootScope.getYelp);
     $http.post('/index',location).success(function (data) {
       factory.restaurants = data;
       $location.path('/restaurant');
@@ -67,6 +70,8 @@ myApp.factory('mainFactory',function($window, $location,$http){
     delete localStorage.email;
     delete localStorage.lat;
     delete localStorage.lng;
+    delete localStorage.list;
+    delete localStorage.location;
     $location.path('/');
     $window.location.reload();
   }
@@ -80,5 +85,10 @@ myApp.factory('mainFactory',function($window, $location,$http){
     })
   }
   factory.getLocation();
+  // if ($rootScope.getYelp) {
+  //   console.log('rootScope',$rootScope.getYelp);
+  //   factory.getYelp($rootScope.getYelp);
+  // }
+
   return factory;
 })
