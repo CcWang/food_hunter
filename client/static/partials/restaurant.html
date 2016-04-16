@@ -1,10 +1,23 @@
 <div ng-controller = 'resController'>
   <div class="row">
      <div class="col s12">
-      <div>
-         <h3 class="col s6">Welcome</h3><h3 class="col s4" ng-bind='user.email'></h3>
-         <h4 class="col s10">Listed is all the restaurants near you based on the category you just picked.</h4>
+    
+         <p class="chip offset-s1 col s1">Welcome <span ng-bind='user.name'></span></p>
+<!-- loading circle -->
+      <div ng-hide='restaurants' class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
       </div>
+
       <div class="col s10">
         <p class="col s6" ng-hide ='user.email'><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
         <p class="col s6" ng-if ='user.email'><button class="waves-effect waves-light btn" ng-click='logoff()'>Log off</button></p>
@@ -13,22 +26,26 @@
      </div>
      <div class="col s12">
        <div class="col s8">
-         <div ng-repeat = '(key,value) in restaurants.businesses' style="display: inline-block;" class="col s4">
-              <div>
-                <p>{{value.name}}</p>
-                <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
-                <img class="resImg" src="{{value.image_url}}"><br>
-                <p>{{value.location.display_address[0]}}</p>
-                <p>{{value.phone}}</p>
-                <a class="btn" href="{{value.url}}" target="_blank" ng-click='updateRes(value.name)'>more detail</a>
-              </div>  
+         <div ng-repeat='list in lists'>
+           <div class="col s12"><h4>{{list}}</h4></div>
+           <div ng-repeat = '(key,value) in restaurants[list].businesses' style="display: inline-block;" class="col s4">
+                <div>
+                  <p>{{value.name}}</p>
+                  <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
+                  <img class="resImg" src="{{value.image_url}}"><br>
+                  <p>{{value.location.display_address[0]}}</p>
+                  <p>{{value.phone}}</p>
+                  <a class="btn" href="{{value.url}}" target="_blank" ng-click='updateRes(value.name)'>more detail</a>
+                </div>  
+            </div>
           </div>
        </div>
        <div class="col s4">
-         <p>lalalalal</p>
+         <form>
+           
+         </form>
        </div>
      </div>
      <hr>
-     {{restaurants.businesses.length}}
   </div>
 </div>

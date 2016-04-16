@@ -8,7 +8,9 @@ module.exports={
     var httpMethod ='GET';
     var url = 'http://api.yelp.com/v2/search';
     var default_parameters = {
-     
+     limit:5,
+     radius:20000,
+     sort:2
     };
     var required_parameters = {
       oauth_consumer_key : process.env.oauth_consumer_key,

@@ -7,28 +7,30 @@ var API_KEY = process.env.google_key;
 module.exports = function (app) {
   app.post('/index', function (req, res) {
     // console.log(req.body.list.unshift('Chinese'));
-
-      var food = req.body.list.toLowerCase();
-
-      var number = food.split(',').length*5;
-    
-    var location = req.body.location.join(',');
-    
-    var list ={
+    var results = {};
+    var count = 0;
+    var restaurants = req.body.list.split(',');
+    // console.log( req.body.list.split(','));
+    function getRestaurant (element) {
+      var food = element.toLowerCase();
+      var location = req.body.location.join(',');
+      var list ={
       //using google api to get current location
-      term:food,
-      ll:location,
-      sort:2,
-      limit:number,
-      radius:20000
-
+        term:food,
+        ll:location,
+      }
+      yelp.request_yelp(list,function(error, response, body){
+        // fs.writeFile('error.log',error);
+        results[element] = JSON.parse(body);
+        count++;
+        if (count === restaurants.length) {
+          console.log(results);
+          res.json(results);
+        }
+      });
     }
-    yelp.request_yelp(list,function(error, response, body){
-      fs.writeFile('error.log',error);
-      var resu = JSON.parse(body);
-      fs.writeFile('body.log',resu);
-      res.json(resu);
-    });
+    restaurants.forEach(getRestaurant);
+    
   });
   app.post('/user',function(req,res){
     users.findOne(req,res);

@@ -43,8 +43,9 @@ myApp.factory('mainFactory',function($window, $location,$http){
  factory.findUser = function(data,cb){
 
     $http.post('/findByEmail',{email:data}).success(function(user){
-      // console.log(user);
-      factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id};
+
+      factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id,name:user[0].email.split('@')[0]};
+      console.log(factory.user);
       cb(factory.user);
       // console.log(factory.user);
     })

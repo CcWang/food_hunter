@@ -48,11 +48,11 @@ myApp.controller('resController',function($scope, mainFactory){
   }
   var getRes = function(data){
     $scope.restaurants =data;
+    $scope.lists = localStorage.list.split(',');
   }
    $scope.logoff = function(){
     mainFactory.logoff();
   }
   mainFactory.findUser(localStorage.email, getUser);
-  // getRes(mainFactory.restaurants);
   mainFactory.getYelp({list:localStorage.list,location:[localStorage.lat,localStorage.lng]},getRes);
 })
