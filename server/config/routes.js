@@ -17,12 +17,11 @@ module.exports = function (app) {
     }else{
       location = req.body.location;
     }
-    console.log(typeof location);
     var number = req.body.list.length * 5;
     var list ={
       //using google api to get current location
       term:food,
-      cll:'37.3895,-122.0183',
+      ll:location,
       sort:2,
       limit:number,
       radius:20000
