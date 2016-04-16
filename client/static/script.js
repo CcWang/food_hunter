@@ -53,25 +53,27 @@ myApp.factory('mainFactory',function($window, $location,$http){
     //get user's picked category
     $http.post('/updateCategory/'+factory.user._id, data).success(function(data){
       var location = {list:data,location:[localStorage.lat,localStorage.lng]};
-      factory.getYelp(location);
+      localStorage.list = data;
+      // factory.getYelp(location);
+      factory.next();
     })
   }
 
-  factory.getYelp = function (location) {
-    // console.log('getYelp location',location);
-    // $rootScope.getYelp = location;
-    // console.log('rootScope',$rootScope.getYelp);
+  factory.getYelp = function (location,cb) {
+    console.log(location);
     $http.post('/index',location).success(function (data) {
       factory.restaurants = data;
-      $location.path('/restaurant');
+      cb(factory.restaurants);
     })
+  }
+  factory.next = function(){
+    $location.path('/restaurant');
   }
   factory.logoff = function(){
     delete localStorage.email;
     delete localStorage.lat;
     delete localStorage.lng;
     delete localStorage.list;
-    delete localStorage.location;
     $location.path('/');
     $window.location.reload();
   }
@@ -80,15 +82,10 @@ myApp.factory('mainFactory',function($window, $location,$http){
       $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+data.key).success(function(data){
         localStorage.lat=data.location.lat;
         localStorage.lng =data.location.lng;
-        console.log(localStorage);
       })
     })
   }
   factory.getLocation();
-  // if ($rootScope.getYelp) {
-  //   console.log('rootScope',$rootScope.getYelp);
-  //   factory.getYelp($rootScope.getYelp);
-  // }
 
   return factory;
 })

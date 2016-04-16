@@ -7,17 +7,13 @@ var API_KEY = process.env.google_key;
 module.exports = function (app) {
   app.post('/index', function (req, res) {
     // console.log(req.body.list.unshift('Chinese'));
-    if (req.body.list instanceof Array) {
-      var food = req.body.list.join(',').toLowerCase();
-    }else {
+
       var food = req.body.list.toLowerCase();
-    }
-    if (req.body.location instanceof Array) {
-      var location = req.body.location.join(',');
-    }else{
-      location = req.body.location;
-    }
-    var number = req.body.list.length * 5;
+
+      var number = food.split(',').length*5;
+    
+    var location = req.body.location.join(',');
+    
     var list ={
       //using google api to get current location
       term:food,

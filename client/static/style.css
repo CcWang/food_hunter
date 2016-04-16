@@ -1,5 +1,5 @@
 html{
-    background-color: #e8edf3;
+    background-color: #d50000;
 }
 video#bgvid { 
     position: fixed;
@@ -47,6 +47,11 @@ h3 {
     color:#b56969;
     font-size: 20px;
     font-weight: bold;
+}
+.resImg {
+    width: 200px;
+    border-radius: 30px;
+    border:3px black solid;
 }
 
 

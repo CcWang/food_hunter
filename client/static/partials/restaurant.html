@@ -12,18 +12,21 @@
       </div>
      </div>
      <div class="col s12">
-       <div ng-repeat = '(key,value) in restaurants.businesses' style="display: inline-block;">
-            <div>
-              <p>{{value.name}}</p>
-              <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
-              <img src="{{value.image_url}}"><br>
-              <p>{{value.location.display_address[0]}}</p>
-              <p>{{value.phone}}</p>
-              <a href="{{value.url}}" target="_blank">more detail</a>
-            </div>
-            
-        </div>
-       
+       <div class="col s8">
+         <div ng-repeat = '(key,value) in restaurants.businesses' style="display: inline-block;" class="col s4">
+              <div>
+                <p>{{value.name}}</p>
+                <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
+                <img class="resImg" src="{{value.image_url}}"><br>
+                <p>{{value.location.display_address[0]}}</p>
+                <p>{{value.phone}}</p>
+                <a class="btn" href="{{value.url}}" target="_blank" ng-click='updateRes(value.name)'>more detail</a>
+              </div>  
+          </div>
+       </div>
+       <div class="col s4">
+         <p>lalalalal</p>
+       </div>
      </div>
      <hr>
      {{restaurants.businesses.length}}
