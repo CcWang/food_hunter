@@ -10,6 +10,9 @@ myApp.config(function($routeProvider){
     .when('/',{
       templateUrl:'/static/partials/main.html'
     })
+    .when('/restaurant/:id',{
+      templateUrl:'/static/partials/more_restaurants.html'
+    })
     .otherwise({
       redirectTo:'/'
     })
@@ -61,7 +64,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
 
   factory.getYelp = function (location,cb) {
-    console.log(location);
+    // console.log(location);
     $http.post('/index',location).success(function (data) {
       factory.restaurants = data;
       cb(factory.restaurants);

@@ -42,7 +42,7 @@ myApp.controller('categoryController',function($scope,mainFactory ){
   
 })
 
-myApp.controller('resController',function($scope, mainFactory){
+myApp.controller('resController',function($scope, mainFactory,$routeParams,$location){
   var getUser = function(data){
     $scope.user = data;
   }
@@ -53,6 +53,14 @@ myApp.controller('resController',function($scope, mainFactory){
    $scope.logoff = function(){
     mainFactory.logoff();
   }
+  $scope.showMore = function(list){
+    $location.path('/restaurant/'+list);
+  }
+  var getList = function () {
+    $scope.currentList = $routeParams.id;
+    console.log($scope.currentList);
+  }
+  getList();
   mainFactory.findUser(localStorage.email, getUser);
   mainFactory.getYelp({list:localStorage.list,location:[localStorage.lat,localStorage.lng]},getRes);
 })

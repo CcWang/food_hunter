@@ -86,7 +86,7 @@ module.exports = {
     })
   },
   updateCategory:function(req,res){
-    console.log(req.body);
+    // console.log(req.body);
     // console.log(req.params);
     for (var i=0;i < req.body.length ; i++) {
         req.body[i]
@@ -94,7 +94,7 @@ module.exports = {
         var query = {}
         query['fav_category.'+ req.body[i]]=1;
         User.update({_id:req.params.id},{$inc:query},function(err,data){
-            console.log(data);
+            // console.log(data);
         })
     }
 

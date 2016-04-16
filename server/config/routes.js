@@ -24,7 +24,6 @@ module.exports = function (app) {
         results[element] = JSON.parse(body);
         count++;
         if (count === restaurants.length) {
-          console.log(results);
           res.json(results);
         }
       });
