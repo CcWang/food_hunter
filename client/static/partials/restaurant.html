@@ -1,19 +1,16 @@
 <div ng-controller = 'resController'>
   <div class="row">
-     <div class="col s12">
-    
-         <p class="chip offset-s1 col s1">Welcome <span ng-bind='user.name'></span></p>
-<div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
-  <a class="btn-floating btn-large red">
-  <i class="large material-icons"></i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-  </ul>
-</div>
+    <div class="col s12">
+      <p class="chip offset-s1 col s1" >Welcome <span ng-bind='user.name'></span></p>
+      <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons"></i>
+        </a>
+        <ul>
+          <li><a class="btn-floating red"><i class="material-icons" ng-click='logoff()'>clear</i></a></li>
+          <li><a class="btn-floating yellow darken-1" href="#/category"><i class="material-icons">undo</i></a></li>
+        </ul>
+      </div>
 <!-- loading circle -->
       <div ng-hide='restaurants' class="preloader-wrapper big active">
         <div class="spinner-layer spinner-blue">
@@ -28,28 +25,26 @@
           </div>
         </div>
       </div>
-
-      <div class="col s10">
-        <p class="col s6" ng-hide ='user.email'><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
-        <p class="col s6" ng-if ='user.email'><button class="waves-effect waves-light btn" ng-click='logoff()'>Log off</button></p>
-        <p class="col s4" ng-if='user.email'><button ng-click='submit()' class="waves-effect waves-light btn btn-floating red">Next</button></p>
-      </div>
-     </div>
-     <div class="col s12">
+    </div>
+    <!-- restaurant list -->
+     <div class="col s10 offset-s1">
        <div class="col s8">
          <div ng-repeat='list in lists'>
            <div class="col s12"><h4>{{list}}</h4></div>
-           <div ng-repeat = 'value in restaurants[list].businesses | limitTo: 6 | orderBy: "value.rating"' style="display: inline-block;" class="col s4">
+           <div ng-repeat = 'value in restaurants[list].businesses | limitTo: 3 | orderBy: "value.rating"' style="display: inline-block;" class="col s4">
                 <div>
                   <p>{{value.name}}</p>
+                  <p>{{value.location.city}} | {{value.location.postal_code}}</p>
                   <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
                   <img class="resImg" src="{{value.image_url}}"><br>
-                  <p>{{value.location.display_address[0]}}</p>
+                  <p>{{value.location.address[0]}}</p>
+                  <p ng-if='!value.location.address[0]'>Click Details for address</p>
                   <p>{{value.phone}}</p>
-                  <a class="waves-effect waves-teal btn" href="{{value.url}}" target="_blank" ng-click='updateRes(value.name)'>more detail</a>
+                  <p ng-if='!value.phone'>No Phone Number</p>
+                  <a class="waves-effect waves-teal btn" href="{{value.url}}"  ng-click='updateRes(value.name)'>more detail</a>
                 </div>  
             </div>
-            <p  class=" col s1 offset-s9 chip"><a ng-click='showMore(list)'>More</a></p>
+            <p  class=" col s1 offset-s9"><a class="btn-floating green material-icons" target='_blank' ng-click='showMore(list)'> ...</a></p>
           </div>
        </div>
        <div class="col s4">
@@ -58,6 +53,5 @@
          </form>
        </div>
      </div>
-     <hr>
   </div>
 </div>

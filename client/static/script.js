@@ -90,6 +90,10 @@ myApp.factory('mainFactory',function($window, $location,$http){
     })
   }
   factory.getLocation();
-
+  //check if loged in
+  if (localStorage.email == undefined) {
+     $location.path('/');
+    
+  }
   return factory;
 })

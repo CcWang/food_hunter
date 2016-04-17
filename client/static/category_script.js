@@ -63,4 +63,6 @@ myApp.controller('resController',function($scope, mainFactory,$routeParams,$loca
   getList();
   mainFactory.findUser(localStorage.email, getUser);
   mainFactory.getYelp({list:localStorage.list,location:[localStorage.lat,localStorage.lng]},getRes);
+// ALTER DISTANCE
+
 })

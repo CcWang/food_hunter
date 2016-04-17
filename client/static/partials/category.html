@@ -1,28 +1,34 @@
 <div ng-controller = 'categoryController'>
   <div class="row">
-    <div class="col s10 offset-s2">
-      <h3>Welcome <span ng-bind='user.name'></span></h3>
-      <div class="col s12">
-        <p class="col s6" ng-hide ='user.email'><a href="#/" class="waves-effect waves-light btn">Log in</a></p>
-        <p class="col s6" ng-if ='user.email'><button class="waves-effect waves-light btn" ng-click='logoff()'>Log off</button></p>
-        <p class="col s2" ng-if='user.email'><button ng-click='submit()' class="waves-effect waves-light btn">Next</button></p>
+    <div class="col s12">
+      <p class="chip offset-s1 col s1" >Welcome <span ng-bind='user.name'></span></p>
+      <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons"></i>
+        </a>
+        <ul>
+          <li><a class="btn-floating red"><i class="material-icons" ng-click='logoff()'>clear</i></a></li>
+          <li><a class="btn-floating blue" ng-click='submit()'><i class="material-icons">send</i></a></li>
+        </ul>
       </div>
-      <div ng-repeat= 'cat in category' id="image" style="display: inline-block; margin: 10px" class="col s3"  >
-        <form>
-          <div>
-            <p class="cat_name">{{cat[0]}}</p>
-            <img class='cat_image'src="./static/images/{{cat[0]}}.jpg">
-            <input type="hidden" value="{{cat[0]}}"></input>
-              <div class="switch">
-                <label>
-                -_- NO
-                <input type="checkbox" ng-model='checked' ng-change='update(cat[0])'>
-                <span class="lever"></span>
-                ^_^ YES
-                </label>
-              </div>
-          </div>
-        </form>
+      <!-- category list -->
+      <div class="col s10 offset-s1">
+        <div ng-repeat= 'cat in category' id="image" style="display: inline-block; margin: 10px" class="col s3"  >
+     
+            <div>
+              <p class="cat_name">{{cat[0]}}</p>
+              <img class='cat_image'src="./static/images/{{cat[0]}}.jpg">
+              <input type="hidden" value="{{cat[0]}}"></input>
+                <div class="switch">
+                  <label>
+                  -_- NO
+                  <input type="checkbox" ng-model='checked' ng-change='update(cat[0])'>
+                  <span class="lever"></span>
+                  ^_^ YES
+                  </label>
+                </div>
+            </div>
+        </div>
       </div>
     </div> 
   </div>

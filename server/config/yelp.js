@@ -9,7 +9,7 @@ module.exports={
     var url = 'http://api.yelp.com/v2/search';
     var default_parameters = {
      limit:20,
-     radius:20000,
+     radius:16000,
      sort:2
     };
     var required_parameters = {
