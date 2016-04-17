@@ -11,20 +11,6 @@
           <li><a class="btn-floating yellow darken-1" href="#/category"><i class="material-icons">undo</i></a></li>
         </ul>
       </div>
-<!-- loading circle -->
-      <div ng-hide='restaurants' class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- restaurant list -->
      <div class="col s10 offset-s1">
@@ -53,5 +39,19 @@
          </form>
        </div>
      </div>
+     <!-- loading circle -->
+    <div ng-hide='restaurants' class="preloader-wrapper big active" style="left:45%;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -62,7 +62,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
       factory.next();
     })
   }
-
+// inital getYelp
   factory.getYelp = function (location,cb) {
     // console.log(location);
     $http.post('/index',location).success(function (data) {
@@ -94,6 +94,12 @@ myApp.factory('mainFactory',function($window, $location,$http){
   if (localStorage.email == undefined) {
      $location.path('/');
     
+  }
+  factory.changeDistance = function(info,cb){
+    $http.post('/changeDistance',info).success(function (data) {
+      factory.restaurants = data;
+      cb(factory.restaurants);
+    })
   }
   return factory;
 })

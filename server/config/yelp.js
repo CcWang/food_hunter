@@ -8,9 +8,7 @@ module.exports={
     var httpMethod ='GET';
     var url = 'http://api.yelp.com/v2/search';
     var default_parameters = {
-     limit:20,
-     radius:16000,
-     sort:2
+
     };
     var required_parameters = {
       oauth_consumer_key : process.env.oauth_consumer_key,
@@ -41,7 +39,7 @@ module.exports={
 
     /* Then we use request to send make the API Request */
     request(apiURL, function(error, response, body){
-      // console.log(apiURL);
+      console.log(apiURL);
       return cb(error, response, body);
       });
     }

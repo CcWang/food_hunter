@@ -4,18 +4,18 @@
       <p class="chip offset-s1 col s1" >Welcome <span ng-bind='user.name'></span></p>
       <!-- change distance -->
 
-<div class="fixed-action-btn horizontal" style="top: 25px; right: 24px;">
-<a class="btn-floating btn-large red">
-<i class="large material-icons">place</i>
-</a>
-<ul>
-<li><a class="btn-floating red" ng-click='changeDistance(8000)'><i class="material-icons">directions_car</i></a></li>
-<li><a class="btn-floating yellow darken-1" ng-click='changeDistance(3200)'><i class="material-icons">directions_bike</i></a></li>
-<li><a class="btn-floating green"><i class="material-icons" ng-click='changeDistance(1600)'>directions_walk</i></a></li>
-<li><a class="btn-floating blue"><i class="material-icons">edit_mode</i></a></li>
-</ul>
-</div>
+      <div class="fixed-action-btn horizontal" style="top: 25px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons">place</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating red" ng-click='changeDistance(8000)'><i class="material-icons">directions_car</i></a></li>
+          <li><a class="btn-floating yellow darken-1" ng-click='changeDistance(3200)'><i class="material-icons">directions_bike</i></a></li>
+          <li><a class="btn-floating green"><i class="material-icons" ng-click='changeDistance(1600)'>directions_walk</i></a></li>
+        </ul>
+      </div>
 
+<!-- log out, go back buttons -->
       <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red">
           <i class="large material-icons"></i>
@@ -25,21 +25,9 @@
           <li><a class="btn-floating yellow darken-1" href="#/restaurant"><i class="material-icons">undo</i></a></li>
         </ul>
       </div>
-<!-- loading circle -->
-      <div ng-hide='restaurants' class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
+
     </div>
+
      <div class="col s10 offset-s1">
        <div class="col s12">
        <!-- {{currentList}} -->
@@ -58,11 +46,22 @@
                 </div>  
             </div>
        </div>
-       <div class="col s4">
-         <form>
-           
-         </form>
-       </div>
      </div>
+
+     <!-- loading circle -->
+      <div ng-hide='currentList' class="preloader-wrapper big active" style="left:45%;">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+
   </div>
 </div>

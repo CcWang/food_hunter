@@ -18,6 +18,9 @@ module.exports = function (app) {
       //using google api to get current location
         term:food,
         ll:location,
+         limit:20,
+        radius_filter:16000,
+       sort:2
       }
       yelp.request_yelp(list,function(error, response, body){
         // fs.writeFile('error.log',error);
@@ -30,6 +33,25 @@ module.exports = function (app) {
     }
     restaurants.forEach(getRestaurant);
     
+  });
+  app.post('/changeDistance',function(req,res){
+    var results = {}
+    console.log('route',req.body);
+    var location = req.body.location.join(',');
+    var limit;
+    console.log(req.body.radius);
+    var list = {
+      term:req.body.list,
+      ll:location,
+      radius_filter:req.body.radius,
+      sort:2
+    }
+    yelp.request_yelp(list,function(error, response, body){
+        // fs.writeFile('error.log',error);
+      results[req.body.list] = JSON.parse(body);
+      // console.log(results);
+      res.json(results);
+    });
   });
   app.post('/user',function(req,res){
     users.findOne(req,res);
