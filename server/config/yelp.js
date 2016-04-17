@@ -39,7 +39,7 @@ module.exports={
 
     /* Then we use request to send make the API Request */
     request(apiURL, function(error, response, body){
-      console.log(apiURL);
+      // console.log(apiURL);
       return cb(error, response, body);
       });
     }

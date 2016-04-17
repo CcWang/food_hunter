@@ -36,10 +36,8 @@ module.exports = function (app) {
   });
   app.post('/changeDistance',function(req,res){
     var results = {}
-    console.log('route',req.body);
     var location = req.body.location.join(',');
     var limit;
-    console.log(req.body.radius);
     var list = {
       term:req.body.list,
       ll:location,
@@ -47,7 +45,6 @@ module.exports = function (app) {
       sort:2
     }
     yelp.request_yelp(list,function(error, response, body){
-        // fs.writeFile('error.log',error);
       results[req.body.list] = JSON.parse(body);
       // console.log(results);
       res.json(results);
