@@ -48,7 +48,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
     $http.post('/findByEmail',{email:data}).success(function(user){
 
       factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id,name:user[0].email.split('@')[0]};
-      console.log(factory.user);
+      // console.log(factory.user);
       cb(factory.user);
       // console.log(factory.user);
     })
@@ -64,7 +64,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
 // inital getYelp
   factory.getYelp = function (location,cb) {
-    // console.log(location);
+    // console.log('inital getYelp',location);
     $http.post('/index',location).success(function (data) {
       factory.restaurants = data;
       cb(factory.restaurants);
@@ -87,9 +87,26 @@ myApp.factory('mainFactory',function($window, $location,$http){
         localStorage.lat=data.location.lat;
         localStorage.lng =data.location.lng;
       })
-    })
+    })  
   }
-  factory.getLocation();
+  if (!(localStorage.lat && localStorage.lng)) {
+    factory.getLocation();
+    
+  }
+
+  //change location:
+  factory.newLocation = function(location){
+    $http.post('/getGoogleKey').success(function(data){
+      $http.post('https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key='+data.key).success(function(data){
+        console.log('newLocation',data.results[0].geometry.location);
+        localStorage.lat=data.results[0].geometry.location.lat;
+        localStorage.lng =data.results[0].geometry.location.lng;
+        $window.location.reload();
+      })
+    }) 
+    // cb;
+  }
+
   //check if loged in
   if (localStorage.email == undefined) {
      $location.path('/');

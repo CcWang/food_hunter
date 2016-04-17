@@ -18,9 +18,9 @@ module.exports = function (app) {
       //using google api to get current location
         term:food,
         ll:location,
-         limit:20,
-        radius_filter:16000,
-       sort:2
+        limit:20,
+        radius_filter:14000,
+        sort:2
       }
       yelp.request_yelp(list,function(error, response, body){
         // fs.writeFile('error.log',error);

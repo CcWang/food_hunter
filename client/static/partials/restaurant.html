@@ -2,6 +2,16 @@
   <div class="row">
     <div class="col s12">
       <p class="chip offset-s1 col s1" >Welcome <span ng-bind='user.name'></span></p>
+      <!-- change location -->
+
+      <div class="input-field col s2 push-s6" >
+          <i class="large material-icons prefix">edit_location</i>
+          <input id="icon_prefix" type="text" class="validate" ng-model='newLocation'>
+           <a class="btn-floating red"><i class="material-icons" ng-click='changeLocation()'>send</i></a>
+          <label for="icon_prefix">different location?</label>  
+      </div>
+
+      <!-- log out, go back buttons -->
       <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red">
           <i class="large material-icons"></i>
@@ -27,10 +37,11 @@
                   <p ng-if='!value.location.address[0]'>Click Details for address</p>
                   <p>{{value.phone}}</p>
                   <p ng-if='!value.phone'>No Phone Number</p>
-                  <a class="waves-effect waves-teal btn" href="{{value.url}}"  ng-click='updateRes(value.name)'>more detail</a>
+                  <img src="./static/images/yelp-logo-small.jpg">
+                  <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name)'>detail </a>
                 </div>  
             </div>
-            <p  class=" col s1 offset-s9"><a class="btn-floating green material-icons" target='_blank' ng-click='showMore(list)'> ...</a></p>
+            <p  class=" col s1 offset-s9"><a class="btn-floating green" ng-click='showMore(list)'><i class="material-icons">list</i></a></p>
           </div>
        </div>
        <div class="col s4">

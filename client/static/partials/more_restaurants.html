@@ -21,7 +21,9 @@
           <i class="large material-icons"></i>
         </a>
         <ul>
-          <li><a class="btn-floating red"><i class="material-icons" ng-click='logoff()'>clear</i></a></li>
+          <li><a class="btn-floating red ">
+            <i class="material-icons" ng-click='logoff()'>clear</i></a>
+          </li>
           <li><a class="btn-floating yellow darken-1" href="#/restaurant"><i class="material-icons">undo</i></a></li>
         </ul>
       </div>
@@ -42,7 +44,8 @@
                   <p ng-if='!value.location.address[0]'>Click Details for address</p>
                   <p>{{value.phone}}</p>
                   <p ng-if='!value.phone'>No Phone Number</p>
-                  <a class="waves-effect waves-teal btn" href="{{value.url}}" target="_blank" ng-click='updateRes(value.name)'>more detail</a>
+                  <img src="./static/images/yelp-logo-small.jpg">
+                  <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name)'>detail </a>
                 </div>  
             </div>
        </div>

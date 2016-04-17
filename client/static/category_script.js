@@ -52,8 +52,9 @@ myApp.controller('resController',function($scope, mainFactory,$routeParams,$loca
   }
   var changeDistance = function(data){
     $scope.restaurants = data;
-    console.log($scope.restaurants[$scope.currentList]);
+    // console.log($scope.restaurants[$scope.currentList]);
   }
+  
    $scope.logoff = function(){
     mainFactory.logoff();
   }
@@ -64,11 +65,17 @@ myApp.controller('resController',function($scope, mainFactory,$routeParams,$loca
     $scope.currentList = $routeParams.id;
   }
   getList();
+  console.log(localStorage)
   mainFactory.findUser(localStorage.email, getUser);
   mainFactory.getYelp({list:localStorage.list,location:[localStorage.lat,localStorage.lng]},getRes);
 // ALTER DISTANCE
   $scope.changeDistance = function(data){
     // console.log($scope.currentList);
-    mainFactory.changeDistance({list:$scope.currentList,location:[localStorage.lat,localStorage.lng],radius:data},changeDistance);
+  mainFactory.changeDistance({list:$scope.currentList,location:[localStorage.lat,localStorage.lng],radius:data},changeDistance);
+  }
+
+//Alter location
+  $scope.changeLocation = function(){
+    mainFactory.newLocation($scope.newLocation);
   }
 })
