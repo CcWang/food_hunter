@@ -58,5 +58,10 @@ h3 {
 h3,h4 {
     text-align: center;
 }
+.login_form label, .login_form input {
+     color: #fff;
+     font-size: 15px;
+}
+
 
 
