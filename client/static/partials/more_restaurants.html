@@ -1,7 +1,8 @@
 <div ng-controller = 'resController'>
+<div class="container">
   <div class="row">
     <div class="col s12">
-      <p class="chip offset-s1 col s1" >Welcome <span ng-bind='user.name'></span></p>
+      <div class="col s6"><p class="chip center-align">Welcome <span ng-bind='user.name'></span></p></div>
       <!-- change distance -->
 
       <div class="fixed-action-btn horizontal" style="top: 25px; right: 24px;">
@@ -29,13 +30,14 @@
       </div>
 
     </div>
+  </div>
 
-     <div class="col s10 offset-s1">
-       <div class="col s12">
+  <div class="row">
+     <div class="col s12 center-align">
        <!-- {{currentList}} -->
-           <div class="col s12"><h4>{{currentList}}</h4></div>
-           <div ng-repeat = 'value in restaurants[currentList].businesses | orderBy: "value.rating"' style="display: inline-block;" class="col s4">
-                <div>
+           <div><h4>{{currentList}}</h4></div>
+           <div ng-repeat = 'value in restaurants[currentList].businesses | orderBy: "value.rating"' style="display: inline-block;" class="center-align clo-s4">
+                <div style="margin-bottom: 8px;">
                   <p>{{value.name}}</p>
                   <p>{{value.location.city}} | {{value.location.postal_code}}</p>
                   <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
@@ -48,7 +50,6 @@
                   <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name,value.url,currentList)'>detail </a>
                 </div>  
             </div>
-       </div>
      </div>
 
      <!-- loading circle -->
@@ -67,4 +68,5 @@
       </div>
 
   </div>
+</div>
 </div>
