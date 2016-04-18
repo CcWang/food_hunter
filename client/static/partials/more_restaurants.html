@@ -45,7 +45,7 @@
                   <p>{{value.phone}}</p>
                   <p ng-if='!value.phone'>No Phone Number</p>
                   <img src="./static/images/yelp-logo-small.jpg">
-                  <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name)'>detail </a>
+                  <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name,value.url,currentList)'>detail </a>
                 </div>  
             </div>
        </div>

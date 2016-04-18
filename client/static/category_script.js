@@ -44,6 +44,7 @@ myApp.controller('categoryController',function($scope,mainFactory ){
 
 myApp.controller('resController',function($scope, mainFactory,$routeParams,$location){
   var getUser = function(data){
+    console.log('user',data);
     $scope.user = data;
   }
   var getRes = function(data){
@@ -65,7 +66,6 @@ myApp.controller('resController',function($scope, mainFactory,$routeParams,$loca
     $scope.currentList = $routeParams.id;
   }
   getList();
-  console.log(localStorage)
   mainFactory.findUser(localStorage.email, getUser);
   mainFactory.getYelp({list:localStorage.list,location:[localStorage.lat,localStorage.lng]},getRes);
 // ALTER DISTANCE
@@ -76,6 +76,18 @@ myApp.controller('resController',function($scope, mainFactory,$routeParams,$loca
 
 //Alter location
   $scope.changeLocation = function(){
-    mainFactory.newLocation($scope.newLocation);
+    mainFactory.newLocation($scope.newLocation, getRes);
+  }
+
+//add browsed restaurants into user db
+  $scope.updateRes = function(name,url,category){
+    mainFactory.updateRes(name,url,category);
+     mainFactory.findUser(localStorage.email, getUser);
+  }
+
+  // update if user like that restaurants 
+  $scope.like = function(category,name,like){
+    mainFactory.like(category,name,like);
+    mainFactory.findUser(localStorage.email, getUser);
   }
 })

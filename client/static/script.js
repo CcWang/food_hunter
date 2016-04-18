@@ -47,7 +47,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
 
     $http.post('/findByEmail',{email:data}).success(function(user){
 
-      factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id,name:user[0].email.split('@')[0]};
+      factory.user = {email:user[0].email,fav_category:user[0].fav_category,_id:user[0]._id,name:user[0].email.split('@')[0],visited_res:user[0].restaurant};
       // console.log(factory.user);
       cb(factory.user);
       // console.log(factory.user);
@@ -64,7 +64,7 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
 // inital getYelp
   factory.getYelp = function (location,cb) {
-    // console.log('inital getYelp',location);
+    console.log('inital getYelp',location);
     $http.post('/index',location).success(function (data) {
       factory.restaurants = data;
       cb(factory.restaurants);
@@ -95,16 +95,18 @@ myApp.factory('mainFactory',function($window, $location,$http){
   }
 
   //change location:
-  factory.newLocation = function(location){
+  factory.newLocation = function(location, cb){
     $http.post('/getGoogleKey').success(function(data){
       $http.post('https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key='+data.key).success(function(data){
         console.log('newLocation',data.results[0].geometry.location);
         localStorage.lat=data.results[0].geometry.location.lat;
         localStorage.lng =data.results[0].geometry.location.lng;
-        $window.location.reload();
+        factory.getYelp({
+          list:localStorage.list,
+          location:[localStorage.lat,localStorage.lng]
+        }, cb);
       })
     }) 
-    // cb;
   }
 
   //check if loged in
@@ -112,10 +114,28 @@ myApp.factory('mainFactory',function($window, $location,$http){
      $location.path('/');
     
   }
+
+  //changeDistance:
   factory.changeDistance = function(info,cb){
     $http.post('/changeDistance',info).success(function (data) {
       factory.restaurants = data;
       cb(factory.restaurants);
+    })
+  }
+
+  //updateRes:
+  factory.updateRes = function(name,url,category){
+    var data = {name:name,url:url,category:category};
+    $http.post('/updateRestaurant/'+factory.user._id,data).success(function(data){
+     // $window.location.reload();
+    })
+  }
+
+  //update if user like that restaurants
+  factory.like = function(category,name,like){
+    var data = {category:category,name:name,like:like};
+    $http.post('/like/'+factory.user._id,data).success(function(data){
+       // $window.location.reload();
     })
   }
   return factory;
