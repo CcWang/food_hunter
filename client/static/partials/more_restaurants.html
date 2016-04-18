@@ -19,7 +19,7 @@
 <!-- log out, go back buttons -->
       <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red">
-          <i class="large material-icons"></i>
+          <i class="large material-icons">reorder</i>
         </a>
         <ul>
           <li><a class="btn-floating red ">
@@ -33,11 +33,12 @@
   </div>
 
   <div class="row">
-     <div class="col s12 center-align">
+     <div class="col s12">
+     <div class="col s12 center-align"></div>
        <!-- {{currentList}} -->
            <div><h4>{{currentList}}</h4></div>
-           <div ng-repeat = 'value in restaurants[currentList].businesses | orderBy: "value.rating"' style="display: inline-block;" class="center-align clo-s4">
-                <div style="margin-bottom: 8px;">
+           <div ng-repeat = 'value in restaurants[currentList].businesses | orderBy: "value.rating"' style="display: inline-block; margin: 5px;" class="center-align ">
+                <div>
                   <p>{{value.name}}</p>
                   <p>{{value.location.city}} | {{value.location.postal_code}}</p>
                   <img src="{{value.rating_img_url}}"> | <span>{{value.review_count}} reviews</span><br>
@@ -50,6 +51,7 @@
                   <a class="waves-effect waves-teal btn" target="_blank" href="{{value.url}}"  ng-click='updateRes(value.name,value.url,currentList)'>detail </a>
                 </div>  
             </div>
+          </div>
      </div>
 
      <!-- loading circle -->
