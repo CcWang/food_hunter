@@ -67,6 +67,7 @@ module.exports = {
       }
     })
   },
+
   findOne:function(req,res){
     User.findOne({'email':req.body.email}, function(err, data){
       if (err) {
@@ -85,21 +86,48 @@ module.exports = {
       }
     })
   },
+
   updateCategory:function(req,res){
     // console.log(req.body);
     // console.log(req.params);
     for (var i=0;i < req.body.length ; i++) {
-        req.body[i]
-        //mongoose way to conplie object key ==>put in query
-        var query = {}
-        query['fav_category.'+ req.body[i]]=2;
-        User.update({_id:req.params.id},{$inc:query},function(err,data){
-          // console.log(data);
-        })
+      //mongoose way to conplie object key ==>put in query
+      var query = {}
+      query['fav_category.'+ req.body[i]]=2;
+      User.update({_id:req.params.id},{$inc:query},function(err,data){
+        // console.log(data);
+      })
     }
 
     res.json(req.body);
   },
+
+  updateRestaurant:function(req,res){
+    // console.log(req.body,req.params);
+    var query = {}
+    query['restaurant.'+req.body.category+'.'+req.body.name+'.url']=req.body.url;
+    query['restaurant.'+req.body.category+'.'+req.body.name+'.like']=false;
+    // console.log(query);
+    User.findByIdAndUpdate(req.params.id,{$set:query},function(err,data){
+      if (err){
+        console.log('updateRestaurant errors',err);
+      }else{
+        res.send(data); 
+      }
+    })
+  },
+  updatelike:function(req,res){
+    var query = {}
+    query['restaurant.'+req.body.category+'.'+req.body.name+'.like']=!req.body.like;
+    User.findByIdAndUpdate(req.params.id,{$set:query},function(err,data){
+      if (err){
+        console.log('updateRestaurant errors',err);
+      }else{
+        res.send(data); 
+      }
+    })
+  },
+
   findByEmail:function(req,res){
     User.find({'email':req.body.email},function(err,data){
         if (err) {
