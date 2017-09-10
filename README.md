@@ -1,4 +1,4 @@
-# FoodHunter!
+# Food Hunter!
   
 ## *A better Yelp*
 [CHECK IT OUT!](http://52.26.69.49/)
